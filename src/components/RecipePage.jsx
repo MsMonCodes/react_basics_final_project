@@ -3,9 +3,10 @@ import { Grid, GridItem } from "@chakra-ui/react"
 export const RecipePage = () => {
     return (
         <Grid
-            templateAreas={`"header header"
-                  "nav main"
-                  "nav footer"`}
+            templateAreas={
+                `"header header"
+                "nav main"
+                "nav footer"`}
             gridTemplateRows={'50px 1fr 30px'}
             gridTemplateColumns={'150px 1fr'}
             h='200px'

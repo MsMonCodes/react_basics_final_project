@@ -1,12 +1,12 @@
-import { Box, Button, Card, CardBody, CardFooter, CardHeader, Heading, List, SimpleGrid, UnorderedList, Image, Text, Show, Flex, Stack } from '@chakra-ui/react';
+import { Box, Card, CardHeader, Heading, CardBody, CardFooter, Button, List, SimpleGrid, UnorderedList, Image, Text, Show, Flex, Stack } from '@chakra-ui/react';
 import { data } from '../utils/data';
+import { SearchBar } from '../components/SearchBar';
 
 export const RecipeListPage = () => {
   // You can play around with the console log, but ultimately remove it once you are done
   // console.log(data.hits[0].recipe.label);
 
-  const breakpoints = { base: '62em', sm: '30em' };
-  // const breakpoints = [{ sm: '30em', md: '48em', lg: '62em' }];
+  const breakpoints = { base: '62em', lg: '30em' };
 
 
   return (
@@ -14,33 +14,34 @@ export const RecipeListPage = () => {
       overflow-x={'none'}
       h={"md"}
       w={'100%'}
-      marginLeft={{ sm: 0, base: "20%" }}
-      marginRight={{ sm: 0, base: "20%" }}
+      marginLeft={{ base: 0, lg: 10 }}
+      marginRight={{ base: 0, lg: 10 }}
       justifyContent={'center'}
       justifyItems={'center'}
       align={'center'}
-      // bgColor={'green.100'}
       bgColor={'white'}
     >
-
       <Box
-        // justify={'center'}
+        // backgroundImage="url('./components/ui/images/background_image.jpg')"
+        // backgroundPosition="center"
+        // backgroundRepeat="no-repeat"
         w={'100%'}
-        mt={'4rem'}
-        mb={'4rem'}
+        mt={{ base: 8, lg: 8 }}
+        mb={{ base: 3, lg: 6 }}
       >
         <Heading
-          // color={'green.400'}
           color={'blackAlpha.800'}
           size={'2xl'}
         >Your Recipe App</Heading>
       </Box>
+      <SearchBar w={'100%'} />
       <Flex
         align={'center'}
         marginInlineStart={10}
         marginInlineEnd={10}
         bgColor={'White'}
-        w={'100%'}
+        w={'80%'}
+        justify={'center'}
         mt={6}
         mb={8}
       >
@@ -49,8 +50,8 @@ export const RecipeListPage = () => {
           display={'inline-flex'}
           flexWrap={'wrap'}
           gap={6}
-          marginLeft={{ sm: 0, base: "10%" }}
-          marginRight={{ sm: 0, base: "10%" }}
+          marginLeft={{ lg: 0, base: "10%" }}
+          marginRight={{ lg: 0, base: "10%" }}
           justifyContent={'center'}
         > {data.hits.map((item) => (
           <List
@@ -62,7 +63,7 @@ export const RecipeListPage = () => {
               bgColor={'orange.50'}
               overflow={'hidden'}
               boxSize={'sm'}
-              w={{ sm: '20vw', base: '80vw' }}
+              w={{ base: '80vw', lg: '20vw' }}
               h={'md'}
               pb={4}
               className='hover-box'
@@ -73,12 +74,12 @@ export const RecipeListPage = () => {
                 src={item.recipe.image}
                 alt={`Image of ${item.recipe.label}.`}
                 objectFit='cover'
-                maxH={{ base: '250px', sm: '200px' }}
+                maxH={{ base: '150px', lg: '200px' }}
                 borderBottomRadius={{ base: 0 }}
               />
               <CardHeader
                 mt={0}
-                mb={2}
+                mb={0}
                 maxH={'10ch'}
 
                 as='span'
@@ -98,7 +99,7 @@ export const RecipeListPage = () => {
                 color='blackAlpha.700'
                 sx={{
                   '.hover-box:hover &': {
-                    color: 'orange.400',
+                    color: 'orange.500',
                   },
                 }}
 
@@ -110,7 +111,7 @@ export const RecipeListPage = () => {
                     <Text>{item.recipe.mealType}</Text>
                   </Box>
                   <Box >
-                    <Text>{(item.recipe.dietLabels.length > 0) ? `Diet: ${item.recipe.dietLabels}` : ""}</Text>
+                    <Text>{(item.recipe.dietLabels.length > 0) ? `Diet: ${item.recipe.dietLabels}` : ``}</Text>
                     <Box fontStyle={'italic'}>
                       {(item.recipe.cautions.length > 0) ? `Allergens: ${item.recipe.cautions}` : ``}
                     </Box>
@@ -145,13 +146,13 @@ export const RecipeListPage = () => {
 //     >
 
 //       <Card
-//         direction={{ base: 'column', sm: 'row' }}
+//         direction={{ base: 'column', lg: 'row' }}
 //         overflow='hidden'
 //         variant='outline'
 //       >
 //         <Image
 //           objectFit='cover'
-//           maxW={{ base: '100%', sm: '200px' }}
+//           maxW={{ base: '100%', lg: '200px' }}
 //           src={item.recipe.image}
 //           alt={`Image of ${item.recipe.label}.`}
 //         />
@@ -194,4 +195,5 @@ export const RecipeListPage = () => {
 //     <Flex>Dish: {item.recipe.dishType}</Flex>
 //     <Flex>Cautions: {item.recipe.cautions}</Flex>
 //   </Flex>
+
 // </Button>
