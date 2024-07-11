@@ -45,7 +45,8 @@ export const RecipeListPage = () => {
           styleType={''}
           display={'inline-flex'}
           flexWrap={'wrap'}
-          gap={6}
+          gap={8}
+          w={'70vw'}
           // marginLeft={{ lg: 0, base: "10%" }}
           // marginRight={{ lg: 0, base: "10%" }}
           justifyContent={'center'}
@@ -61,8 +62,7 @@ export const RecipeListPage = () => {
               // bgColor={'whiteAlpha.900'}
               overflow={'hidden'}
               boxSize={'sm'}
-              // w={{ base: '80vw', lg: '20vw' }}
-              w={{ base: '80vw', lg: '20vw' }}
+              w={'300px'}
               h={{ base: 'sm', lg: 'md' }}
               // h={'minmax(md, lg)'}
               pb={2}
