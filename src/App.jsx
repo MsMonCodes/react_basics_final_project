@@ -16,7 +16,7 @@ export const App = () => {
       console.log('fill this in later')
       // < RecipePage />
       :
-      < RecipeListPage />
-    // <RecipePage />
+      // < RecipeListPage />
+      <RecipePage />
   );
 }
