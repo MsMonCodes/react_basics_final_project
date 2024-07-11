@@ -11,47 +11,43 @@ export const RecipeListPage = () => {
 
   return (
     <SimpleGrid
-      overflow-x={'none'}
-      h={"md"}
+      overflow-x={0}
       w={'100%'}
-      marginLeft={{ base: 0, lg: 10 }}
-      marginRight={{ base: 0, lg: 10 }}
-      justifyContent={'center'}
       justifyItems={'center'}
       align={'center'}
-      bgColor={'white'}
+      color={'blackAlpha.800'}
+    // bgColor={'gray.800'}
+    // color={'whiteAlpha.800'}
     >
       <Box
-        // backgroundImage="url('./components/ui/images/background_image.jpg')"
-        // backgroundPosition="center"
-        // backgroundRepeat="no-repeat"
+        // backgroundImage={"url('./components/ui/images/background_image.jpg')"}
+        // backgroundPosition={"center"}
+        // backgroundRepeat={"no-repeat"}
         w={'100%'}
         mt={{ base: 8, lg: 8 }}
         mb={{ base: 3, lg: 6 }}
       >
         <Heading
-          color={'blackAlpha.800'}
+          // color={'blackAlpha.800'}
           size={'2xl'}
         >Your Recipe App</Heading>
       </Box>
-      <SearchBar w={'100%'} />
-      <Flex
+      <Box
         align={'center'}
-        marginInlineStart={10}
-        marginInlineEnd={10}
-        bgColor={'White'}
-        w={'80%'}
-        justify={'center'}
+        w={{ lg: '80%', base: '100%', }}
+        // justify={'center'}
         mt={6}
         mb={8}
       >
+        <SearchBar w={'100%'} />
         <UnorderedList
-          styleType={' '}
+          marginRight={{ lg: 0, base: 3 }}
+          styleType={''}
           display={'inline-flex'}
           flexWrap={'wrap'}
           gap={6}
-          marginLeft={{ lg: 0, base: "10%" }}
-          marginRight={{ lg: 0, base: "10%" }}
+          // marginLeft={{ lg: 0, base: "10%" }}
+          // marginRight={{ lg: 0, base: "10%" }}
           justifyContent={'center'}
         > {data.hits.map((item) => (
           <List
@@ -61,33 +57,37 @@ export const RecipeListPage = () => {
             <Card
               borderRadius={48}
               bgColor={'orange.50'}
+              // bgColor={'whiteAlpha.50'}
+              // bgColor={'whiteAlpha.900'}
               overflow={'hidden'}
               boxSize={'sm'}
+              // w={{ base: '80vw', lg: '20vw' }}
               w={{ base: '80vw', lg: '20vw' }}
-              h={'md'}
-              pb={4}
+              h={{ base: 'sm', lg: 'md' }}
+              // h={'minmax(md, lg)'}
+              pb={2}
               className='hover-box'
             >
               <Image
-                borderRadius={[48, 48, 0, 0]}
                 marginBlock={0}
                 src={item.recipe.image}
                 alt={`Image of ${item.recipe.label}.`}
                 objectFit='cover'
-                maxH={{ base: '150px', lg: '200px' }}
-                borderBottomRadius={{ base: 0 }}
+                h={{ base: '150px', lg: '200px' }}
+                // maxH={{ base: '150px', lg: '200px' }}
+                borderBottomRadius={{ base: 0, lg: 0 }}
               />
               <CardHeader
                 mt={0}
                 mb={0}
-                maxH={'10ch'}
-
+                maxH={'fit-content'}
                 as='span'
-                color='blackAlpha.800'
+                color='blackAlpha.700'
                 sx={{
                   '.hover-box:hover &': {
                     color: 'blackAlpha.800',
                     bgColor: 'orange.400'
+                    // bgColor: 'gray.500',
                   },
                 }}
               >
@@ -95,20 +95,23 @@ export const RecipeListPage = () => {
                 </Heading>
               </CardHeader>
               <CardBody
+                mt={-4}
                 as='span'
                 color='blackAlpha.700'
                 sx={{
                   '.hover-box:hover &': {
                     color: 'orange.500',
+                    // color: 'gray.500'
                   },
                 }}
 
               >
-                {/* <Text>{data.hits.healthLabels.filter(healthLabels === "Vegetarian" || healthLabels === "Vegan")}</Text> */}
                 <Stack gap={1}>
                   <Box>
                     <Text fontWeight={'semibold'} >Dish: {item.recipe.dishType}</Text>
                     <Text>{item.recipe.mealType}</Text>
+                    <Text>{(item.recipe.healthLabels === 'Vegetarian') ? 'Vegetarian' : ''}</Text>
+                    {/* <Text>{data.hits.healthLabels.filter(healthLabels === "Vegetarian" || healthLabels === "Vegan")}</Text> */}
                   </Box>
                   <Box >
                     <Text>{(item.recipe.dietLabels.length > 0) ? `Diet: ${item.recipe.dietLabels}` : ``}</Text>
@@ -129,7 +132,7 @@ export const RecipeListPage = () => {
             </Card>
           </List>
         ))} </UnorderedList>
-      </Flex >
+      </Box >
 
     </SimpleGrid >
 

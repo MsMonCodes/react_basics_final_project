@@ -8,7 +8,12 @@ export const SearchBar = () => {
 
     return (
         <Box
-            w={{ base: '80%', lg: '64%' }}
+            // w={'inherit'}
+            // w={{ base: '80%', lg: '62.5%' }}
+            w={{ base: '80%', lg: '60%' }}
+            pb={6}
+            color={'blackAlpha.600'}
+            fontSize={'md'}
         >
             <Input
                 variant='flushed'

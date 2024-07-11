@@ -1,5 +1,17 @@
 import { Grid, GridItem } from "@chakra-ui/react"
 
+// Recipe name
+// A picture of the recipe/meal
+// Meal type
+// Dish type
+// Total cooking time
+// Diet label
+// All health labels
+// Cautions
+// Ingredients
+// Servings
+// Total nutrients (Energy in kcal, protein, fat, carbs, cholesterol, sodium)
+
 export const RecipePage = () => {
     return (
         <Grid
@@ -29,3 +41,4 @@ export const RecipePage = () => {
         </Grid>
     );
 }
+
