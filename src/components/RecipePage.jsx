@@ -1,5 +1,6 @@
-import { Grid, GridItem, Image, Heading, Container, Text, Center, Box, UnorderedList, List } from "@chakra-ui/react"
+import { Grid, GridItem, Image, Heading, Container, Text, Center, Box, UnorderedList, List, Flex, SimpleGrid, background, filter } from "@chakra-ui/react"
 import { data } from "../utils/data";
+import { filterProps } from "framer-motion";
 
 // Recipe name
 //     <CardHeader
@@ -61,199 +62,112 @@ import { data } from "../utils/data";
 
 
 export const RecipePage = () => {
-    const recipeSelected = (data.hits[0].recipe);
+    const recipeSelected = (data.hits[10].recipe);
+    const cookingTime = (time) => {
+        const hours = Math.floor(time / 60);
+        const minutes = time % 60;
+        return `${hours}h ${minutes < 10 ? `0${minutes}` : minutes}m`;
+    }
+    const backdrop = {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        // boxSize: '250px',
+        color: 'white',
+        textShadow: '0 0 20px black',
+        fontWeight: 'bold',
+        fontSize: '20px',
+        px: 4,
+        background: `url(${recipeSelected.image}) center/cover no-repeat`
+    }
 
     return (
-        <Center>
-            <Box border={'2px'} borderColor={'orange.300'}
-                h={'lg'} bgSize={'contain'} w={'50vw'}
-            // mx={'10px'} bgImage={recipeSelected.image}
-            // bgPos={'center'} objectFit={'cover'} bgRepeat={'no-repeat'}
+        <SimpleGrid justifyContent={'center'} color={'blackAlpha.800'} mx={'10%'}>
+            <Box h={'lg'} bgSize={'cover'} sx={backdrop}>
+                <Heading w={'container.lg'} position={'absolute'} top={'25%'} px={'5%'} flexWrap={'wrap'} size={'4xl'} color={'whiteAlpha.900'}
+                >{recipeSelected.label}</Heading></Box >
+            {/* <Box border={'2px'} borderColor={'pink.500'} px={4}>
+                navigation bar
+            </Box> */}
+            <Grid alignContent={'center'} templateColumns={4} size={'fit=contents'} display={'inline-flex'} textAlign={'left'} justifyContent={'center'} py={2}
+                gap={'17.8%'}
+            // gap={'44'}
             >
-                <Image src={recipeSelected.image} alt={`Image of ${recipeSelected.label}.`}
-                    backgroundPosition={'center'}
-                    filter={''}
-                />
-                <Heading
-                    w={'container.lg'}
-                    position={'absolute'}
-                    align={'center'}
-                    top={'20%'}
-                    left={'23%'}
-                    flexWrap={'wrap'}
-                    size={'4xl'}
-                >{recipeSelected.label}</Heading>
-            </Box >
-            <Box border={'2px'} borderColor={'orange.300'} px={4}> </Box>
-            <Box border={'2px'} borderColor={'pink.500'} px={4}>navigation bar</Box>
-            <Box border={'2px'} borderColor={'green.100'} px={4}>
-                <Text>{recipeSelected.mealType}</Text>
+                <Box alignContent={'center'}>
+                    <Text size={'sm'} py={1}
+                    >Dish Type:</Text>
+                    <Heading size={'md'} fontWeight={'bold'}
+                    >{recipeSelected.dishType}</Heading></Box>
+                <Box >
+                    <Text size={'sm'} py={1}
+                    >Meal Type:</Text>
+                    <Heading size={'md'} fontWeight={'bold'}
+                    >{recipeSelected.mealType}</Heading></Box>
+                <Box>
+                    <Text size={'sm'} py={1}
+                    >Total Cooking Time:</Text>
+                    <Heading size={'md'} fontWeight={'bold'}
+                    >{cookingTime(recipeSelected.totalTime)}</Heading></Box>
+                <Box>
+                    <Text size={'sm'} py={1}
+                    >Servings:</Text>
+                    <Heading size={'md'} fontWeight={'bold'}
+                    >{recipeSelected.yield} portions</Heading></Box>
+            </Grid>
+            <Box size={'fit=contents'} display={'inline-flex'} gap={'20%'} textAlign={'left'} justifyContent={'center'} py={2}>
             </Box>
-            <Box border={'2px'} borderColor={'green.200'} px={4}>
-                <Text>Dish: {recipeSelected.dishType}</Text>
-            </Box>
-            <Box border={'2px'} borderColor={'green.300'} px={4}>
-
-            </Box>
-            <Box border={'2px'} borderColor={'blue.100'} px={4}>
-
-            </Box>
-            <Box border={'2px'} borderColor={'blue.200'} px={4}>
-
-            </Box>
-            <Box border={'2px'} borderColor={'blue.300'} px={4}>
-
-            </Box>
-            <Box border={'2px'} borderColor={'yellow.300'} px={4} p={4}>
-                <Heading size={'lg'} pb={2}>Nutrition: </Heading>
-                <Grid pb={1} templateAreas={`"label", "quantity"`} templateColumns={'2fr, 1fr'} >
-                    <GridItem display={'inline-flex'} gap={4}>
-                        <Heading gridAreasize={'md'} verticalAlign={'center'}>{recipeSelected.totalNutrients.ENERC_KCAL.label}</Heading>
-                        <Text size={'md'}>{recipeSelected.totalNutrients.ENERC_KCAL.quantity.toFixed(0)} {recipeSelected.totalNutrients.ENERC_KCAL.unit}</Text>
-                    </GridItem>
-                    <GridItem display={'inline-flex'} gap={4}>
-                        <Heading size={'md'} verticalAlign={'center'}>{recipeSelected.totalNutrients.PROCNT.label}</Heading>
-                        <Text size={'md'}>{recipeSelected.totalNutrients.PROCNT.quantity.toFixed(0)} {recipeSelected.totalNutrients.PROCNT.unit}</Text>
-                    </GridItem>
-                    <GridItem display={'inline-flex'} gap={4}>
-                        <Heading size={'md'} verticalAlign={'center'}>{recipeSelected.totalNutrients.FAT.label}</Heading>
-                        <Text size={'md'}>{recipeSelected.totalNutrients.FAT.quantity.toFixed(0)} {recipeSelected.totalNutrients.FAT.unit}</Text>
-                    </GridItem>
-                    <GridItem display={'inline-flex'} gap={4}>
-                        <Heading size={'md'} verticalAlign={'center'}>{recipeSelected.totalNutrients.CHOCDF.label}</Heading>
-                        <Text size={'md'}>{recipeSelected.totalNutrients.CHOCDF.quantity.toFixed(0)} {recipeSelected.totalNutrients.CHOCDF.unit}</Text>
-                    </GridItem>
-                    <GridItem display={'inline-flex'} gap={4}>
-                        <Heading size={'md'} verticalAlign={'center'}>{recipeSelected.totalNutrients.CHOLE.label}</Heading>
-                        <Text size={'md'}>{recipeSelected.totalNutrients.CHOLE.quantity.toFixed(0)} {recipeSelected.totalNutrients.CHOLE.unit}</Text>
-                    </GridItem>
-                    <GridItem display={'inline-flex'} gap={4}>
-                        <Heading size={'md'} verticalAlign={'center'}>{recipeSelected.totalNutrients.NA.label}</Heading>
-                        <Text size={'md'}>{recipeSelected.totalNutrients.NA.quantity.toFixed(0)} {recipeSelected.totalNutrients.NA.unit}</Text>
-                    </GridItem>
-                </Grid>
-                {/* {data.hits.map((item) => ( */}
-                {/* <UnorderedList
-                    marginRight={{ lg: 0, base: 3 }}
-                    styleType={''}
-                    display={'inline-flex'}
-                    flexWrap={'wrap'}
-                    gap={8}
-                    w={'70vw'}
-                    // marginLeft={{ lg: 0, base: "10%" }}
-                    // marginRight={{ lg: 0, base: "10%" }}
-                    justifyContent={'center'}
-                >
-                    {recipeSelected.totalNutrients.map((item) => (
-                        <List
-                            key={item.recipeSelected.label}
-                            alignItems={'start'}
-                        >
-                            <Box>
-                                <Text>{item.totalNutrients}</Text>
-                            </Box>
-                        </List>
-                    ))}
-                </UnorderedList> */}
-                {/* <List>
-                {recipeSelected.totalNutrients}
-                Energy in kcal, protein, fat, carbs, cholesterol, sodium
-                </List> */}
-            </Box>
-            <Box border={'2px'} borderColor={'red.300'} px={4}>
-
-            </Box>
-            <Box border={'2px'} borderColor={'pink.300'} px={4}>
-
-            </Box>
-
-        </Center >
-        // <Grid
-        //     templateAreas={
-        //         `"hero hero hero"
-        //         "nav nav nav"
-        //         "meal dish time"
-        //         "ingredients ingredients diet"   
-        //         "ingredients ingredients health"                
-        //         "ingredients ingredients cautions"                
-        //         "ingredients ingredients servings"                
-        //         "ingredients ingredients nutrients"
-        //         "footer footer footer"`}
-        //     gridTemplateRows={'3fr 50px 1fr 1fr 1fr 1fr 1fr 1fr 1fr'}
-        //     gridTemplateColumns={'1fr 3fr 1fr'}
-        //     gap='1'
-        //     color='blackAlpha.800'
-        //     // fontWeight='bold'
-        //     align={'center'}
-        //     marginInline={'25vw'}
-        // >
-
-        //     <GridItem bg='orange.300' area={'hero'} insetInline={'auto'}
-        //         backgroundImage={recipeSelected.image}>
-        //         {/* <Image src={recipeSelected.image} alt={`Image of ${recipeSelected.label}.`}
-        //             objectFit={'full'}
-        //             backgroundPosition={'center'}
-        //             filter={''}
-        //         /> */}
-        //         <Heading
-        //             w={'container.lg'}
-        //             alignSelf={'center'}
-        //             position={'absolute'}
-        //             // justify={'center'}
-        //             // alignf={'center'}
-        //             top={'20%'}
-        //             left={'23%'}
-        //             flexWrap={'wrap'}
-        //             size={'4xl'}
-        //         // transform={'translate(-50%, -50%'}
-        //         >{recipeSelected.label}</Heading>
-        //     </GridItem>
-
-        //     <GridItem pl='2' bg='pink.500' area={'nav'}>
-        //         navigation bar
-        //     </GridItem>
-
-        //     <GridItem pl='2' bg='green.100' area={'meal'}>
-        //         <Text>{recipeSelected.mealType}</Text>
-        //     </GridItem>
-
-        //     <GridItem pl='2' bg='green.200' area={'dish'}>
-        //         <Text>Dish: {recipeSelected.dishType}</Text>
-        //     </GridItem>
-
-        //     <GridItem pl='2' bg='green.300' area={'time'}>
-        //         cooking time block
-        //     </GridItem>
-
-        //     <GridItem pl='2' bg='blue.100' area={'diet'}>
-        //         diet labels block
-        //     </GridItem>
-
-        //     <GridItem pl='2' bg='blue.200' area={'health'}>
-        //         {(recipeSelected.dietLabels.length > 0) ? `Diet: ${recipeSelected.dietLabels}` : `Diet: unknown`}
-        //     </GridItem>
-
-        //     <GridItem pl='2' bg='blue.300' area={'cautions'}>
-        //         allergens block
-        //     </GridItem>
-
-        //     <GridItem pl='2' bg='gray.300' area={'servings'}>
-        //         servings block
-        //     </GridItem>
-
-        //     <GridItem pl='2' bg='yellow.300' area={'nutrients'}>
-        //         nutrients block
-        //     </GridItem>
-
-        //     <GridItem pl='2' bg='red.300' area={'ingredients'}>
-        //         ingredients block
-        //     </GridItem>
-
-        //     <GridItem pl='2' bg='pink.500' area={'footer'}>
-        //         Footer
-        //     </GridItem>
-
-        // </Grid>
+            <SimpleGrid columns={2} w={'container.lg'}
+            >
+                <Box border={'2px'} borderColor={'blue.100'}
+                    p={4}>
+                    <Heading size={'md'} pb={2}
+                    >Diet labels:</Heading>
+                    <Text
+                    >{(recipeSelected.dietLabels.length > 0) ? `${recipeSelected.dietLabels}` : `unknown`}</Text></Box>
+                <Box border={'2px'} borderColor={'blue.300'}
+                    p={4}>
+                    <Heading size={'md'} pb={2}
+                    >Allergens:</Heading>
+                    <Text size={'md'}
+                    >{recipeSelected.cautions}</Text></Box>
+                <Box border={'2px'} borderColor={'blue.200'}
+                    p={4}>
+                    <Heading size={'md'} pb={2}
+                    >Health labels:</Heading>
+                    <Text
+                    >{recipeSelected.healthLabels}</Text></Box>
+                <Box border={'2px'} borderColor={'orange.300'}
+                    p={4}>
+                    <Heading size={'md'} pb={2}
+                    >Ingredients: </Heading>
+                    <Text size={'md'}
+                    >{recipeSelected.ingredientLines}</Text></Box>
+                <Box border={'2px'} borderColor={'yellow.300'}
+                    p={4}>
+                    <Heading size={'md'} pb={2}
+                    >Nutrition:</Heading>
+                    <SimpleGrid columns={2} spacingX='40px' spacingY='20px'>
+                        <Box>
+                            <Text size={'md'} fontWeight={'bold'} >{recipeSelected.totalNutrients.ENERC_KCAL.label}</Text>
+                            <Text size={'md'} fontWeight={'bold'} >{recipeSelected.totalNutrients.PROCNT.label}</Text>
+                            <Text size={'md'} fontWeight={'bold'} >{recipeSelected.totalNutrients.FAT.label}</Text>
+                            <Text size={'md'} fontWeight={'bold'} >{recipeSelected.totalNutrients.CHOCDF.label}</Text>
+                            <Text size={'md'} fontWeight={'bold'} >{recipeSelected.totalNutrients.CHOLE.label}</Text>
+                            <Text size={'md'} fontWeight={'bold'} >{recipeSelected.totalNutrients.NA.label}</Text>
+                        </Box>
+                        <Box>
+                            <Text size={'md'} >{recipeSelected.totalNutrients.ENERC_KCAL.quantity.toFixed(0)} {recipeSelected.totalNutrients.ENERC_KCAL.unit}</Text>
+                            <Text size={'md'} >{recipeSelected.totalNutrients.PROCNT.quantity.toFixed(0)} {recipeSelected.totalNutrients.PROCNT.unit}</Text>
+                            <Text size={'md'} >{recipeSelected.totalNutrients.FAT.quantity.toFixed(0)} {recipeSelected.totalNutrients.FAT.unit}</Text>
+                            <Text size={'md'} >{recipeSelected.totalNutrients.CHOCDF.quantity.toFixed(0)} {recipeSelected.totalNutrients.CHOCDF.unit}</Text>
+                            <Text size={'md'} >{recipeSelected.totalNutrients.CHOLE.quantity.toFixed(0)} {recipeSelected.totalNutrients.CHOLE.unit}</Text>
+                            <Text size={'md'} >{recipeSelected.totalNutrients.NA.quantity.toFixed(0)} {recipeSelected.totalNutrients.NA.unit}</Text>
+                        </Box>
+                    </SimpleGrid></Box>
+            </SimpleGrid>
+            <Box border={'2px'} borderColor={'pink.300'} px={4}>Footer</Box>
+        </SimpleGrid >
     );
 }
 
