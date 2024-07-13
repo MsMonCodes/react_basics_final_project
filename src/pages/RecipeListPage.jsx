@@ -8,12 +8,6 @@ export const RecipeListPage = () => {
 
   const breakpoints = { base: '62em', lg: '30em' };
 
-
-  // const vegLabels = (data.hits.recipe.healthLabels).filter('Vegetarian') => 
-
-  //   {recipeSelected.dietLabels.map((item) => <p>{item}</p>)}
-
-
   return (
     <SimpleGrid
       overflow-x={0}

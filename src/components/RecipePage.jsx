@@ -3,7 +3,8 @@ import { data } from "../utils/data";
 import { filterProps } from "framer-motion";
 
 export const RecipePage = () => {
-    const recipeSelected = (data.hits[17].recipe);
+    const breakpoints = { base: '62em', lg: '30em' };
+    const recipeSelected = (data.hits[7].recipe);
     const cookingTime = (time) => {
         const hours = Math.floor(time / 60);
         const minutes = time % 60;
@@ -25,42 +26,44 @@ export const RecipePage = () => {
 
     return (
         <Container>
-            <SimpleGrid justifyContent={'center'} color={'blackAlpha.800'} mx={'10%'}>
-                <Box h={'sm'} bgSize={'cover'} sx={backdrop}
+            <SimpleGrid justifyContent={'center'} alignContent={'center'} w={'100%'} color={'blackAlpha.800'}>
+                <Box h={{ base: 'sm', lg: 'sm' }} bgSize={'cover'} sx={backdrop}
                 // filter={'auto'} 
                 // blur={'2px'}
                 >
-                    <Heading w={'container.lg'} position={'absolute'} px={'5%'} flexWrap={'wrap'} size={'4xl'} color={'whiteAlpha.900'}
+                    <Heading w={{ base: 'container.xs', lg: 'container.lg' }} position={'absolute'} px={'5%'} flexWrap={'wrap'} justifyItems={'center'} size={{ base: '3xl', lg: '4xl' }} color={'whiteAlpha.900'}
                     >{recipeSelected.label}</Heading></Box >
-                <Grid boxShadow={'md'}
-                    columns={4} w={'container.lg'} alignContent={'center'}
-                    justifyContent='space-evenly'
-                    display={'inline-flex'}
-                    textAlign={'center'}
+                <Grid boxShadow={{ base: 'md', lg: 'md' }}
+                    w={{ base: 'sm', lg: 'container.lg' }} alignContent={'center'}
+                    justifyContent={'space-evenly'}
+                    align={'center'}
+                    display={{ base: 'flex', lg: 'inline-flex' }}
+                    flexWrap={'wrap'}
                     pt={2} pb={4}
+                    rowGap={4}
                 >
-                    <GridItem alignContent={'center'}>
+                    <GridItem w={{ base: '50%', lg: '25%' }}>
                         <Text py={1}
                         >Dish Type:</Text>
                         <Heading size={'md'} fontWeight={'bold'}
                         >{recipeSelected.dishType}</Heading></GridItem>
-                    <GridItem >
+                    <GridItem w={{ base: '50%', lg: '25%' }}>
                         <Text py={1}
                         >Meal Type:</Text>
                         <Heading size={'md'} fontWeight={'bold'}
                         >{recipeSelected.mealType}</Heading></GridItem>
-                    <GridItem>
+                    <GridItem w={{ base: '50%', lg: '25%' }}>
                         <Text py={1}
                         >Cooking Time:</Text>
                         <Heading size={'md'} fontWeight={'bold'}
                         >{cookingTime(recipeSelected.totalTime)}</Heading></GridItem>
-                    <GridItem>
+                    <GridItem w={{ base: '50%', lg: '25%' }}>
                         <Text py={1}
                         >Servings:</Text>
                         <Heading size={'md'} fontWeight={'bold'}
                         >{recipeSelected.yield} portions</Heading></GridItem>
                 </Grid>
-                <SimpleGrid columns={3} w={'container.lg'} gap={10} mt={6}
+                {/* <SimpleGrid columns={3} w={'container.lg'} gap={10} mt={6}
                 // pt={10}
                 >
                     <GridItem w={'2xl'} >
@@ -127,7 +130,7 @@ export const RecipePage = () => {
                                         <p>{healthLabel}</p>
                                     )}
                                 </Box></Text></Box></GridItem>
-                </SimpleGrid>
+                </SimpleGrid> */}
             </SimpleGrid >
             {/* <Box>
                 <Image
