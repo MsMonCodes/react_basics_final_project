@@ -11,7 +11,7 @@ export const SearchBar = () => {
             // w={'inherit'}
             // w={{ base: '80%', lg: '62.5%' }}
             w={{ base: '80%', lg: '60%' }}
-            pb={6}
+            pb={8}
             color={'blackAlpha.600'}
             fontSize={'md'}
         >

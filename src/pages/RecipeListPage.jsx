@@ -1,4 +1,4 @@
-import { Box, Card, CardHeader, Heading, CardBody, CardFooter, Button, List, SimpleGrid, UnorderedList, Image, Text, Show, Flex, Stack } from '@chakra-ui/react';
+import { Box, Card, CardHeader, Heading, CardBody, CardFooter, Button, List, SimpleGrid, UnorderedList, Image, Text, Show, Flex, Stack, Hide } from '@chakra-ui/react';
 import { data } from '../utils/data';
 import { SearchBar } from '../components/SearchBar';
 
@@ -7,6 +7,11 @@ export const RecipeListPage = () => {
   // console.log(data.hits[0].recipe.label);
 
   const breakpoints = { base: '62em', lg: '30em' };
+
+
+  // const vegLabels = (data.hits.recipe.healthLabels).filter('Vegetarian') => 
+
+  //   {recipeSelected.dietLabels.map((item) => <p>{item}</p>)}
 
 
   return (
@@ -61,9 +66,9 @@ export const RecipeListPage = () => {
               // bgColor={'whiteAlpha.50'}
               // bgColor={'whiteAlpha.900'}
               overflow={'hidden'}
-              boxSize={'sm'}
+              // boxSize={'lg'}
               w={'300px'}
-              h={{ base: 'sm', lg: 'md' }}
+              h={{ base: 'sm', lg: 'xl' }}
               // h={'minmax(md, lg)'}
               pb={2}
               className='hover-box'
@@ -106,18 +111,35 @@ export const RecipeListPage = () => {
                 }}
 
               >
-                <Stack gap={1}>
-                  <Box>
-                    <Text fontWeight={'semibold'} >Dish: {item.recipe.dishType}</Text>
-                    <Text>{item.recipe.mealType}</Text>
-                    <Text>{(item.recipe.healthLabels === 'Vegetarian') ? 'Vegetarian' : ''}</Text>
-                    {/* <Text>{data.hits.healthLabels.filter(healthLabels === "Vegetarian" || healthLabels === "Vegan")}</Text> */}
+                <Stack gap={1} fontSize={'md'}>
+                  <Box py={2}><Text fontSize={'lg'} fontWeight={'semibold'} py={0}>{(item.recipe.mealType).join('/').toLowerCase()}</Text>
+                    <Box display={'inline-flex'} gap={2} justifyContent={'center'}>
+                      {/* <Text
+                    >Dish Type:</Text> */}
+                      <Text fontSize={'lg'}
+                      // fontWeight={'semibold'}
+                      >{item.recipe.dishType}</Text></Box></Box>
+                  <Box>{(item.recipe.cautions.length > 0)
+                    ? <Box><Text
+                    >Allergens:</Text><Text fontWeight={'semibold'}
+                    >{(item.recipe.cautions).join(', ').toLowerCase()}</Text></Box>
+                    : ''
+                    // <Hide />
+                  }
                   </Box>
-                  <Box >
-                    <Text>{(item.recipe.dietLabels.length > 0) ? `Diet: ${item.recipe.dietLabels}` : ``}</Text>
-                    <Box fontStyle={'italic'}>
-                      {(item.recipe.cautions.length > 0) ? `Allergens: ${item.recipe.cautions}` : ``}
-                    </Box>
+                  <Box>{(item.recipe.healthLabels.includes("Vegetarian", "Vegan"))
+                    ? <Box display={'inline'} gap={2} justifyContent={'center'}><Text
+                    >Health Labels:</Text>
+                      {(item.recipe.healthLabels.includes("Vegan"))
+                        ? <Text fontWeight={'semibold'}>vegetarian/vegan</Text>
+                        : <Text fontWeight={'semibold'}>vegetarian</Text>}</Box>
+                    : ''}
+                  </Box>
+                  <Box gap={2} justifyContent={'center'}>{(item.recipe.dietLabels.length > 0)
+                    ? <Box><Text
+                    >Diet Labels:</Text><Text fontWeight={'semibold'}
+                    >{(item.recipe.dietLabels).join(', ').toLowerCase()}</Text></Box>
+                    : ' '}
                   </Box>
                 </Stack>
               </CardBody>
