@@ -10,7 +10,9 @@ export const SearchBar = () => {
         <Box
             // w={'inherit'}
             // w={{ base: '80%', lg: '62.5%' }}
-            w={{ base: '80%', lg: '60%' }}
+            // w={{ base: '80%', lg: '60%' }}
+            w={{ base: '2xs', lg: '4xl' }}
+            // m={10}
             pb={8}
             color={'blackAlpha.600'}
             fontSize={'md'}

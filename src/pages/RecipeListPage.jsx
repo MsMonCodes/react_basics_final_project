@@ -1,4 +1,4 @@
-import { Box, Card, CardHeader, Heading, CardBody, CardFooter, Button, List, SimpleGrid, UnorderedList, Image, Text, Show, Flex, Stack, Hide } from '@chakra-ui/react';
+import { Box, Card, CardHeader, Heading, CardBody, CardFooter, Button, List, SimpleGrid, UnorderedList, Image, Text, Show, Flex, Stack, Hide, Divider } from '@chakra-ui/react';
 import { data } from '../utils/data';
 import { SearchBar } from '../components/SearchBar';
 
@@ -55,6 +55,7 @@ export const RecipeListPage = () => {
           // marginLeft={{ lg: 0, base: "10%" }}
           // marginRight={{ lg: 0, base: "10%" }}
           justifyContent={'center'}
+          alignContent={'center'}
         > {data.hits.map((item) => (
           <List
             key={item.recipe.label}
@@ -67,8 +68,8 @@ export const RecipeListPage = () => {
               // bgColor={'whiteAlpha.900'}
               overflow={'hidden'}
               // boxSize={'lg'}
-              w={'300px'}
-              h={{ base: 'sm', lg: 'xl' }}
+              w={{ base: 'xs', lg: '300px' }}
+              h={{ base: 'fit-content', lg: 'xl' }}
               // h={'minmax(md, lg)'}
               pb={2}
               className='hover-box'
@@ -154,7 +155,11 @@ export const RecipeListPage = () => {
             </Card>
           </List>
         ))} </UnorderedList>
+        <Box mt={10} h={{ base: 10, lg: 20 }} w={{ base: '2xs', lg: '4xl' }}>
+          <Divider orientation='horizontal' />
+        </Box>
       </Box >
+
 
     </SimpleGrid >
 
