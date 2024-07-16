@@ -1,12 +1,14 @@
 import { Box, Card, CardHeader, Heading, CardBody, CardFooter, Button, List, SimpleGrid, UnorderedList, Image, Text, Show, Flex, Stack, Hide, Divider } from '@chakra-ui/react';
-import { data } from '../utils/data';
-import { SearchBar } from '../components/SearchBar';
+import { data } from '../../utils/data';
+import { SearchBar } from '../SearchBar';
+import { useState } from 'react';
 
-export const RecipeListPage = () => {
+export const RecipeListPage = ({ listItem, clickFn }) => {
   // You can play around with the console log, but ultimately remove it once you are done
   // console.log(data.hits[0].recipe.label);
 
   const breakpoints = { base: '62em', lg: '30em' };
+  // const { onOpen } = useDisclosure();
 
   return (
     <SimpleGrid
@@ -18,19 +20,7 @@ export const RecipeListPage = () => {
     // bgColor={'gray.800'}
     // color={'whiteAlpha.800'}
     >
-      <Box
-        // backgroundImage={"url('./components/ui/images/background_image.jpg')"}
-        // backgroundPosition={"center"}
-        // backgroundRepeat={"no-repeat"}
-        w={'100%'}
-        mt={{ base: 8, lg: 8 }}
-        mb={{ base: 3, lg: 6 }}
-      >
-        <Heading
-          // color={'blackAlpha.800'}
-          size={'2xl'}
-        >Your Recipe App</Heading>
-      </Box>
+
       <Box
         align={'center'}
         w={{ lg: '80%', base: '100%', }}
@@ -38,7 +28,6 @@ export const RecipeListPage = () => {
         mt={6}
         mb={8}
       >
-        <SearchBar w={'100%'} />
         <UnorderedList
           marginRight={{ lg: 0, base: 3 }}
           styleType={''}
@@ -56,6 +45,7 @@ export const RecipeListPage = () => {
             alignItems={'start'}
           >
             <Card
+              onClick={() => clickFn(listItem)}
               borderRadius={48}
               bgColor={'orange.50'}
               // bgColor={'whiteAlpha.50'}
@@ -153,8 +143,6 @@ export const RecipeListPage = () => {
           <Divider orientation='horizontal' />
         </Box>
       </Box >
-
-
     </SimpleGrid >
 
   );

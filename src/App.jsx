@@ -1,22 +1,23 @@
 import { useState } from 'react';
-import { RecipeListPage } from './pages/RecipeListPage';
+import { RecipeList } from './components/RecipeList';
 import { Card, Stack } from '@chakra-ui/react';
-import { RecipePage } from './components/RecipePage';
+import { FullRecipePage } from './pages/FullRecipePage';
+import { RecipeSearch } from './pages/RecipeSearchPage';
 
 export const App = () => {
   // Your state code here
-  const [selectedRecipe, setSelectedRecipe] = useState(false);
-  const clickHandler = () => {
-    setSelectedDrink(true);
-  }
+  const [selectedRecipe, setSelectedRecipe] = useState();
+  // const clickHandler = () => {
+  //   setSelectedRecipe(true);
+  // }
   // console.log('Please Print');
   return (
     selectedRecipe
       ?
-      console.log('fill this in later')
-      // < RecipePage />
+      <FullRecipePage recipeSelection={selectedRecipe} clickFn={setSelectedRecipe} />
       :
-      // < RecipeListPage />
-      <RecipePage />
+      <RecipeSearch clickFn={setSelectedRecipe} />
+    // < RecipeListPage clickFn={setSelectedRecipe} />
+    // <RecipePage clickFn={setSelectedRecipe} />
   );
 }
