@@ -39,7 +39,7 @@ export const SearchBar = ({ changeFn, ...props }) => {
             // w={{ base: '80%', lg: '60%' }}
             w={{ base: '2xs', lg: '4xl' }}
             // m={10}
-            pb={8}
+            pb={6}
             color={'blackAlpha.600'}
             fontSize={'md'}
         >

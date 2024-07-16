@@ -5,7 +5,8 @@ import { RecipeList } from "../components/RecipeList";
 import { data } from "../utils/data";
 // import { RecipePage } from "../RecipePage";
 
-export const RecipeSearch = ({ clickFn }) => {
+export const RecipeSearchPage = ({ clickFn }) => {
+    const breakpoints = { base: '62em', lg: '30em' };
     const [searchField, setSearchField] = useState('');
     const handleChange = (event) => {
         return setSearchField(event.target.value);
@@ -13,6 +14,9 @@ export const RecipeSearch = ({ clickFn }) => {
     const matchedRecipe = data.hits.filter((item) => {
         return item.recipe.label.toLowerCase().includes(searchField.toLowerCase());
     });
+
+    window.scrollTo(0, 0);
+
 
     return (
         <>
@@ -33,12 +37,10 @@ export const RecipeSearch = ({ clickFn }) => {
                         // color={'blackAlpha.800'}
                         size={'2xl'}
                     >Your Recipe App</Heading></Box>
-                <Box
-                    align={'center'}
-                    w={{ lg: '80%', base: '100%', }}
-                    // justify={'center'}
-                    mt={6}
-                    mb={8}>
+                <Box align={'center'} w={{ lg: '80%', base: '100%', }}
+                    mt={4} mb={4}
+                // justify={'center'}
+                >
                     <SearchBar w={'100%'} changeFn={handleChange} />
                     <RecipeList listItem={matchedRecipe} clickFn={clickFn} />
                     <Box mt={10} h={{ base: 10, lg: 20 }} w={{ base: '2xs', lg: '4xl' }}>

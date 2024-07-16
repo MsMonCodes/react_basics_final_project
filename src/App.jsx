@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { RecipeList } from './components/RecipeList';
 import { Card, Stack } from '@chakra-ui/react';
 import { FullRecipePage } from './pages/FullRecipePage';
-import { RecipeSearch } from './pages/RecipeSearchPage';
+import { RecipeSearchPage } from './pages/RecipeSearchPage';
 
 export const App = () => {
   // Your state code here
@@ -11,13 +11,14 @@ export const App = () => {
   //   setSelectedRecipe(true);
   // }
   // console.log('Please Print');
+
   return (
     selectedRecipe
       ?
       <FullRecipePage recipeSelection={selectedRecipe} clickFn={setSelectedRecipe} />
+      // <RecipeSearchPage clickFn={setSelectedRecipe} />
       :
-      <RecipeSearch clickFn={setSelectedRecipe} />
-    // < RecipeListPage clickFn={setSelectedRecipe} />
-    // <RecipePage clickFn={setSelectedRecipe} />
+      <RecipeSearchPage clickFn={setSelectedRecipe} />
+    // <FullRecipePage recipeSelection={selectedRecipe} clickFn={setSelectedRecipe} />
   );
 }
