@@ -1,9 +1,10 @@
-import { Box, Heading, SimpleGrid, Divider } from "@chakra-ui/react"
+import { Box, Heading, SimpleGrid, Divider, Button } from "@chakra-ui/react"
 import { useState } from "react";
 import { SearchBar } from "../components/SearchBar";
 import { RecipeList } from "../components/RecipeList";
 import { data } from "../utils/data";
 // import { RecipePage } from "../RecipePage";
+import { BackToTopButton } from "../components/BackToTopButton";
 
 export const RecipeSearchPage = ({ clickFn }) => {
     const breakpoints = { base: '62em', lg: '30em' };
@@ -46,6 +47,7 @@ export const RecipeSearchPage = ({ clickFn }) => {
                     <Box mt={10} h={{ base: 10, lg: 20 }} w={{ base: '2xs', lg: '4xl' }}>
                         <Divider orientation='horizontal' /></Box></Box >
             </SimpleGrid >
+            <BackToTopButton />
         </>
     );
 }

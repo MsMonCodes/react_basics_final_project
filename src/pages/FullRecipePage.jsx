@@ -1,4 +1,5 @@
 import { Grid, GridItem, Image, Heading, Container, Text, Box, SimpleGrid, Divider, Button } from "@chakra-ui/react"
+import { BackToTopButton } from "../components/BackToTopButton";
 
 // const recipeSelection = (data.hits[7].recipe);
 
@@ -22,14 +23,14 @@ export const FullRecipePage = ({ recipeSelection, clickFn }) => {
         background: `url(${recipeSelection.recipe.image}) center/cover no-repeat`
     }
 
-    // window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
 
     return (
         <Container>
             <SimpleGrid
                 justifyContent={'center'}
                 alignContent={'center'}
-                w={'100%'}
+                w={{ base: '100vw', lg: '100%' }}
                 color={'blackAlpha.800'}>
                 <Box
                     h={{ base: 'sm', lg: 'sm' }}
@@ -44,9 +45,13 @@ export const FullRecipePage = ({ recipeSelection, clickFn }) => {
                         size={{ base: '3xl', lg: '4xl' }}
                         color={'whiteAlpha.900'}>
                         {recipeSelection.recipe.label}</Heading></Box >
-                <Grid
+                <Grid bgColor={'red.100'}
+                    // justifyContent={'center'}
+                    // alignContent={'center'}
+                    // w={{ base: '100vw', lg: '100%' }}
+
                     boxShadow={{ base: 'md', lg: 'md' }}
-                    w={{ base: 'sm', lg: 'container.lg' }}
+                    w={{ base: 'container.xs', lg: 'container.lg' }}
                     alignContent={'center'}
                     justifyContent={'space-evenly'}
                     align={'center'}
@@ -128,13 +133,16 @@ export const FullRecipePage = ({ recipeSelection, clickFn }) => {
                                     <p>{healthLabel}</p>
                                 )}</Box></Text></Box></GridItem></Grid>
                 <Box
+                    // base={{ position: 'sticky', bottom: 0 }}
+                    position={{ base: 'sticky', lg: 'static' }}
+                    bottom={0}
                     mt={5}
                     height={'100'}
                     className='hover-box'>
                     <Button
                         onClick={() => clickFn()}
                         cursor={'pointer'}
-                        w={'100%'}
+                        w={{ base: '100%', lg: '100%' }}
                         as='span'
                         bgColor={'orange.200'}
                         color='blackAlpha.700'
